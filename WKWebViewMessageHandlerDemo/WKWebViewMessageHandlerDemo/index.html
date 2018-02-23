@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>This is Alexander</title>
+   
+</head>
+<body style="width: 100%;height: 1300px">
+
+	<div style="margin-top: 100px">
+		按钮示例
+
+	</div>
+
+    <!-- 按钮点击 -->
+	<div>
+        <input type="button" value="Hello world" onclick="sayHiClick()" /> 
+
+    </div>
+
+    <!-- 修改按钮的值 -->
+	
+	<div>
+    <input id="changeValBtn" type="button" value="分享链接" onclick="shareBtnClick()" />
+     
+
+    </div>
+
+    <div>
+        
+    	回调区域
+        
+    </div>
+
+
+    <!-- 回调结果显示区域 -->
+    <div id="showReturnValArea">
+    	
+
+    </div>
+
+
+
+
+    <script type="text/javascript">
+
+    	// 向原生传递一个字符串
+        function sayHiClick(argument) {
+			
+			window.webkit.messageHandlers.SayHi.postMessage('SayHi');
+        }
+
+		// 向原生传递一个字典
+        function shareBtnClick(argument) {
+			
+			window.webkit.messageHandlers.Share.postMessage({
+				'name':'百度','链接':'www.baidu.com'
+			});
+        }
+
+        // 回调结果
+        function shareResult(name,link){
+
+        	 var content = "分享内容为:"+name+"------"+link;
+        	 document.getElementById("showReturnValArea").innerHTML = content;	
+        }
+	
+
+
+    </script>
+
+
+
+
+</body>
+</html>
